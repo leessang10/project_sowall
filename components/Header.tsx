@@ -27,7 +27,7 @@ export default function Header() {
                 onMouseLeave={() => setShowDropdown(false)}
               >
                 <Link
-                  href="#interior"
+                  href="/interior"
                   className="text-sm tracking-wider relative py-2.5 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-black after:transition-all after:duration-300 hover:after:w-full"
                 >
                   INTERIOR
@@ -35,7 +35,7 @@ export default function Header() {
                 {showDropdown && (
                   <ul className="absolute top-full left-0 bg-white border border-black/10 p-5 min-w-[200px] shadow-lg">
                     <li className="py-2.5">
-                      <Link href="#hospital" className="hover:opacity-60 transition-opacity">
+                      <Link href="/interior" className="hover:opacity-60 transition-opacity">
                         HOSPITAL/COMMERCIAL
                       </Link>
                     </li>
@@ -88,7 +88,7 @@ export default function Header() {
           <nav className="md:hidden mt-5 pb-5">
             <ul className="flex flex-col gap-5">
               <li>
-                <Link href="#interior" className="text-sm tracking-wider" onClick={() => setIsOpen(false)}>
+                <Link href="/interior" className="text-sm tracking-wider" onClick={() => setIsOpen(false)}>
                   INTERIOR
                 </Link>
               </li>
