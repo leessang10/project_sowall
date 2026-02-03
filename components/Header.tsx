@@ -12,7 +12,7 @@ export default function Header() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="logo">
-            <Link href="#home">
+            <Link href="/">
               <h1 className="font-forum text-2xl tracking-wider">Project SoWall</h1>
             </Link>
           </div>

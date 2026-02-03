@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import About from '@/components/About';
 import Gallery from '@/components/Gallery';
 import Branding from '@/components/Branding';
 import Consulting from '@/components/Consulting';
@@ -14,8 +15,7 @@ export default function Home() {
       <main>
         <Hero />
 
- 
-        <div className="h-[100vh]" />
+        <About />
 
         <Gallery />
 
