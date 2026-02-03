@@ -29,7 +29,7 @@ export default function Contact() {
 
   return (
     <section ref={containerRef} id="contact" className="border-t border-black/10 py-24 px-[5%]">
-      <div className="max-w-[1400px] mx-auto">
+      <div className="mx-auto">
         {/* Top Text */}
         <div className="mb-32">
           <h2 className="font-forum text-4xl md:text-5xl leading-relaxed">

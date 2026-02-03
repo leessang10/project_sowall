@@ -7,7 +7,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-black/10 py-12 px-[5%]">
-      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className="mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <div>
           <p className="text-xs text-black/60">Copyright © 2026 AVEC | Powered by AVEC</p>
         </div>
