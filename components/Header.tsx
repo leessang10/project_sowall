@@ -5,7 +5,6 @@ import Link from 'next/link';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
 
   return (
     <header className="fixed top-0 left-0 w-full bg-white/98 backdrop-blur-md z-50 border-b border-black/10">
@@ -23,8 +22,6 @@ export default function Header() {
             <ul className="flex gap-10 items-center">
               <li
                 className="relative group"
-                onMouseEnter={() => setShowDropdown(true)}
-                onMouseLeave={() => setShowDropdown(false)}
               >
                 <Link
                   href="/interior"
@@ -32,15 +29,6 @@ export default function Header() {
                 >
                   INTERIOR
                 </Link>
-                {showDropdown && (
-                  <ul className="absolute top-full left-0 bg-white border border-black/10 p-5 min-w-[200px] shadow-lg">
-                    <li className="py-2.5">
-                      <Link href="/interior" className="hover:opacity-60 transition-opacity">
-                        HOSPITAL/COMMERCIAL
-                      </Link>
-                    </li>
-                  </ul>
-                )}
               </li>
               <li>
                 <Link
