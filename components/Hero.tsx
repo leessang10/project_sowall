@@ -30,7 +30,10 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center items-center text-center px-[5%] mt-20 relative">
+    <section
+      id="home"
+      className="min-h-screen flex flex-col justify-center items-center text-center px-[5%] mt-20 relative bg-[url('/images/primary_flat.webp')] bg-cover bg-center"
+    >
       <h1
         ref={titleRef}
         className="font-forum text-5xl md:text-7xl mb-5 opacity-0 translate-y-8"
