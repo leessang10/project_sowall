@@ -1,36 +1,22 @@
+'use client';
+
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className="border-t border-black/10 py-16 px-[5%]">
-      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+    <footer className="border-t border-black/10 py-12 px-[5%]">
+      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <div>
-          <p className="text-xs text-black/60">&copy; 2026 Project SoWall. All rights reserved.</p>
+          <p className="text-xs text-black/60">Copyright © 2026 AVEC | Powered by AVEC</p>
         </div>
-        <div className="flex gap-8">
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs tracking-wider transition-colors hover:text-black/60"
-          >
-            Instagram
-          </a>
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs tracking-wider transition-colors hover:text-black/60"
-          >
-            Facebook
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs tracking-wider transition-colors hover:text-black/60"
-          >
-            LinkedIn
-          </a>
-        </div>
+        <button
+          onClick={scrollToTop}
+          className="text-xs tracking-[2px] hover:opacity-60 transition-opacity underline underline-offset-4"
+        >
+          BACK TO TOP
+        </button>
       </div>
     </footer>
   );

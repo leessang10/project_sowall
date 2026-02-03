@@ -14,30 +14,25 @@ export default function Home() {
       <main>
         <Hero />
 
-        {/* Spacer */}
+ 
         <div className="h-[100vh]" />
 
         <Gallery />
 
-        {/* Spacer */}
         <div className="h-[80vh]" />
 
         <Branding />
 
-        {/* Spacer */}
         <div className="h-[80vh]" />
 
         <Consulting />
-
-        {/* Spacer */}
         <div className="h-[80vh]" />
 
         <Clients />
 
-        {/* Spacer */}
         <div className="h-[80vh]" />
 
-        <Contact />
+        <Contact /> 
       </main>
       <Footer />
     </>
