@@ -2,6 +2,7 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Gallery from '@/components/Gallery';
+import ProjectList from '@/components/ProjectList';
 import Branding from '@/components/Branding';
 import Consulting from '@/components/Consulting';
 import Clients from '@/components/Clients';
@@ -18,6 +19,8 @@ export default function Home() {
         <About />
 
         <Gallery />
+
+        <ProjectList />
 
         <div className="h-[80vh]" />
 
