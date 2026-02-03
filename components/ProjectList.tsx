@@ -1,62 +1,57 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 import projects from '../project';
 
-function ProjectItem({ project, index }: { project: string; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
+interface ProjectItemProps {
+  project: string;
+  index: number;
+  scrollYProgress: MotionValue<number>;
+  totalItems: number;
+}
+
+function ProjectItem({ project, index, scrollYProgress, totalItems }: ProjectItemProps) {
+  // Each item's initial position on the wheel (evenly distributed around 360 degrees)
+  const baseAngle = (index / totalItems) * 360;
+
+  // Total rotation based on scroll (full rotation + extra to show last items)
+  const scrollRotation = useTransform(scrollYProgress, [0, 1], [0, 360 + 180]);
+
+  // Calculate final angle: base position + scroll rotation
+  const angle = useTransform(scrollRotation, (rotation) => {
+    const totalAngle = baseAngle + rotation;
+    // Normalize to -180 to 180 range (0 is center of viewport)
+    return ((totalAngle + 180) % 360) - 180;
   });
 
-  // Calculate opacity, y position, and scale based on scroll progress (lens effect)
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.5, 0.8, 1],
-    [0.1, 0.3, 1, 0.3, 0.1]
-  );
+  // Calculate opacity based on angle (items near center are fully visible)
+  const opacity = useTransform(angle, [-180, -60, 0, 60, 180], [0, 0.2, 1, 0.2, 0]);
 
-  const y = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    [150, 0, -150]
-  );
+  // Calculate scale based on angle (items near center are larger)
+  const scale = useTransform(angle, [-180, -60, 0, 60, 180], [0.5, 0.7, 1.3, 0.7, 0.5]);
 
-  // Convex lens effect: scale up in center, scale down at edges
-  const scale = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.5, 0.8, 1],
-    [0.5, 0.7, 1.4, 0.7, 0.5]
-  );
+  // Calculate y position (circular motion) - increased range for more spacing
+  // Negative sign to reverse wheel direction (scroll down = items move down)
+  const y = useTransform(angle, (a) => -Math.sin((a * Math.PI) / 180) * 300);
 
-  // Font weight changes: bolder in center
-  const fontWeight = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.5, 0.8, 1],
-    [200, 300, 700, 300, 200]
-  );
+  // 3D rotation for wheel effect (reversed direction)
+  const rotateX = useTransform(angle, [-180, -60, 0, 60, 180], [-75, -30, 0, 30, 75]);
 
-  // 3D rotation effect: dramatic belt-like curve (convex lens direction)
-  const rotateX = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.5, 0.8, 1],
-    [-75, -30, 0, 30, 75]
-  );
+  // Font weight (bolder near center)
+  const fontWeight = useTransform(angle, [-180, -60, 0, 60, 180], [200, 300, 700, 300, 200]);
 
   return (
     <motion.div
-      ref={ref}
       style={{
         opacity,
         y,
         scale,
         rotateX,
-        transformPerspective: 400,
+        transformPerspective: 500,
         transformStyle: 'preserve-3d',
       }}
-      className="py-3"
+      className="absolute w-full py-4"
     >
       <motion.p
         style={{ fontWeight }}
@@ -69,12 +64,36 @@ function ProjectItem({ project, index }: { project: string; index: number }) {
 }
 
 export default function ProjectList() {
+  const containerRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end end'],
+  });
+
   return (
-    <section className="py-32 px-[5%] bg-white min-h-[200vh]" style={{ perspective: '600px' }}>
-      <div className="max-w-4xl mx-auto" style={{ transformStyle: 'preserve-3d' }}>
-        {projects.map((project, index) => (
-          <ProjectItem key={index} project={project} index={index} />
-        ))}
+    <section
+      ref={containerRef}
+      className="relative bg-white min-h-[1000vh]"
+      style={{ perspective: '1200px' }}
+    >
+      {/* Sticky container that stays in center while scrolling through section */}
+      <div className="sticky top-0 h-screen px-[5%] flex items-center justify-center">
+        <div className="relative max-w-4xl mx-auto w-full h-[80vh] overflow-hidden">
+          <div
+            className="relative w-full h-full flex items-center justify-center"
+            style={{ transformStyle: 'preserve-3d' }}
+          >
+            {projects.map((project, index) => (
+              <ProjectItem
+                key={index}
+                project={project}
+                index={index}
+                scrollYProgress={scrollYProgress}
+                totalItems={projects.length}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
