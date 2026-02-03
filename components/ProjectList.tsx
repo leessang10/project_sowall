@@ -2,49 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-
-const projects = [
-  'Bitchaeun Dermatology',
-  'Banobagi Dermatology',
-  'IEUL Clinic',
-  'Lienjang Plastic Surgery',
-  'Dicarat Clinic',
-  'Senia Clinic',
-  'Circle Clinic',
-  'Yeon Dental Hospital',
-  'Dongtan Grand Passage',
-  'Jeonju Cancer Hospital',
-  'Jeonju W Oriental Medicine Hospital',
-  'Yeongdeungpo Kyunghee Oriental Medicine Hospital',
-  'Suwon Bandeut Oriental Medicine Hospital',
-  'Mokdong Barunjisung Oriental Medicine Hospital',
-  'Chungnam Remedy Oriental Medicine Hospital',
-  'Yan Clinic',
-  'Songdo Skywalker',
-  'Leeum Dermatology',
-  'Le Blanc Dental Clinic',
-  'Doctors Dermatology',
-  'Galleria Dermatology',
-  'Le Somme Clinic',
-  'Law Firm Start',
-  'Timeview Clinic',
-  'Remember Dermatology',
-  'Vinehub Oriental Medicine Clinic',
-  'The Hill Dermatology',
-  'Veruce Jewelry Shop',
-  '2.7 Petit Clinic',
-  'YOU&I Clinic',
-  'Snow Clinic',
-  'BeautyOn Clinic',
-  'H Place',
-  'Bykim Dermatology',
-  'Sonsoo Hair and Makeup',
-  'Clear Eye Clinic',
-  'Tthart Art Dental',
-  'Objet Plastic Surgery',
-  'Agana Infertility Center',
-  'Marble Fruit Showroom',
-];
+import projects from '../project';
 
 function ProjectItem({ project, index }: { project: string; index: number }) {
   const ref = useRef<HTMLDivElement>(null);

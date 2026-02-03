@@ -3,6 +3,7 @@ import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Gallery from '@/components/Gallery';
 import ProjectList from '@/components/ProjectList';
+import VideoShowcase from '@/components/VideoShowcase';
 import Branding from '@/components/Branding';
 import Consulting from '@/components/Consulting';
 import Clients from '@/components/Clients';
@@ -22,18 +23,13 @@ export default function Home() {
 
         <ProjectList />
 
-        <div className="h-[80vh]" />
+        <VideoShowcase />
 
-        <Branding />
+        {/* <Branding /> */}
 
-        <div className="h-[80vh]" />
+        {/* <Consulting />
 
-        <Consulting />
-        <div className="h-[80vh]" />
-
-        <Clients />
-
-        <div className="h-[80vh]" />
+        <Clients /> */}
 
         <Contact /> 
       </main>
